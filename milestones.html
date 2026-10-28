@@ -5,6 +5,67 @@
 <title>幸福里程碑｜可樂旅遊永續網站</title>
 <style>
 :root{--green:#174d32;--dark:#073428;--cream:#f7f6f0;--line:#d7d8cc}*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:#213a2d;background:var(--cream)}button,a{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}.nav{height:72px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 max(5%,calc((100% - 1200px)/2));box-shadow:0 2px 12px #0001}.nav img{height:43px;max-width:180px;object-fit:contain}.nav-links{display:flex;gap:24px;font-size:14px;font-weight:700;flex-wrap:wrap}.nav-links a[aria-current]{color:var(--green);border-bottom:3px solid var(--green);padding-bottom:7px}.hero{min-height:280px;display:flex;align-items:center;background:linear-gradient(90deg,#062f27db,#0a3b2640),url('image/main/01.avif') center 48%/cover;color:#fff}.hero-inner,.wrap{width:min(1200px,92%);margin:auto}.hero h1{font-size:clamp(36px,5vw,62px);letter-spacing:.08em;margin:0 0 10px}.hero p{font-size:22px;letter-spacing:.08em;margin:0}.content{padding:36px 0 90px}.topline{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.topline h2{margin:0;font-size:25px}.filters{display:flex;flex-wrap:wrap;gap:8px}.filter{border:1px solid var(--line);border-radius:24px;padding:9px 17px;background:transparent;color:#4c5e4e}.filter.active{background:var(--green);color:#fff;border-color:var(--green)}.timeline{display:grid;grid-template-columns:repeat(3,1fr);margin:44px 0 30px;position:relative}.timeline:before{content:"";position:absolute;top:38px;left:16.66%;right:16.66%;height:2px;background:#a8b7a8}.period{border:0;background:transparent;color:#6b746c;position:relative;padding:0 8px 18px;font-weight:700;font-size:17px}.period span{display:block;margin-bottom:14px}.period i{display:block;margin:auto;width:18px;height:18px;border-radius:50%;border:5px solid #a4a69a;background:#fff;position:relative;z-index:1}.period.active{color:var(--green)}.period.active i{border-color:#e2b924;background:var(--green);box-shadow:0 0 0 5px #1d623e55}.panel{display:grid;grid-template-columns:270px minmax(0,1fr);gap:32px;align-items:start}.intro{padding:18px 0}.intro .years{font-size:36px;color:var(--green);font-family:Georgia,serif;margin:0 0 12px}.intro h3{font-size:26px;margin:0 0 18px}.intro p{color:#68796c;line-height:1.85}.cards-area{min-width:0}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{border:1px solid #e4e5dc;background:white;border-radius:13px;overflow:hidden;text-align:left;padding:0;box-shadow:0 6px 18px #1b3c2410;transition:transform .2s}.card:hover{transform:translateY(-3px)}.card-visual{height:146px;background:linear-gradient(125deg,#0d4b40,#82a79b);position:relative;overflow:hidden}.card-visual img{width:100%;height:100%;object-fit:cover;display:block}.card-year{position:absolute;left:12px;top:12px;background:#174d32e8;color:#fff;border:1px solid #ffffff7a;padding:5px 14px;border-radius:20px;font-size:13px}.card-category{position:absolute;left:12px;bottom:8px;background:#fff;color:var(--green);padding:4px 10px;border-radius:15px;font-size:12px}.card-bottom{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;gap:8px;font-weight:700;min-height:58px}.arrow{border:1px solid #9cbaa6;border-radius:50%;width:31px;height:31px;display:grid;place-items:center;flex:none}.controls{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:19px}.controls button{border:1px solid #cad8cd;border-radius:50%;background:#fff;width:39px;height:39px}.controls button:disabled{opacity:.35;cursor:not-allowed}.status{font-size:13px;color:#647467}.empty{padding:70px 15px;text-align:center;border:1px dashed #cbd6ca;border-radius:12px;color:#607363}.dialog{border:0;border-radius:16px;max-width:850px;width:min(92vw,850px);padding:0;box-shadow:0 20px 80px #0005}.dialog::backdrop{background:#0009}.dialog-body{padding:34px}.dialog-top{display:flex;justify-content:space-between;align-items:start;gap:12px}.dialog-close{border:0;background:#edf1eb;border-radius:50%;font-size:24px;width:36px;height:36px}.dialog h2{font-size:30px;margin:8px 0 15px}.dialog p{line-height:1.9;color:#4f6356}.dialog .photo{width:100%;max-height:330px;object-fit:cover;border-radius:10px;margin-top:12px}.note{font-size:12px;color:#738277;margin-top:22px}.footer{background:#073428;color:#dbe9df;padding:25px 5%;font-size:12px;text-align:center}@media(max-width:800px){.nav{height:auto;min-height:68px;flex-wrap:wrap;padding:12px 4%}.nav-links{gap:12px;font-size:12px}.panel{grid-template-columns:1fr;gap:6px}.intro{padding:0}.intro .years{font-size:30px}.timeline{margin:32px 0 18px}.period{font-size:13px}.hero{min-height:240px}.cards{gap:10px}.card-visual{height:130px}}@media(max-width:480px){.cards{grid-template-columns:1fr}.card-visual{height:175px}.hero p{font-size:17px}}
+
+/* 時間軸圓點動畫 */
+.period i {
+  transition: all 0.4s ease;
+}
+
+.period:hover i {
+  transform: scale(1.2);
+  border-color: #5b9568;
+}
+
+.period.active i {
+  animation: timelinePulse 0.5s ease;
+}
+
+@keyframes timelinePulse {
+  0% {
+    transform: scale(0.7);
+    box-shadow: 0 0 0 0 rgba(29,98,62,0);
+  }
+  60% {
+    transform: scale(1.25);
+    box-shadow: 0 0 0 10px rgba(29,98,62,0.15);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 5px rgba(29,98,62,0.33);
+  }
+}
+
+/* 文字與卡片進場動畫 */
+.panel.switching-in .intro {
+  animation: fadeSlideIn 0.45s ease both;
+}
+
+.panel.switching-in .cards-area {
+  animation: fadeSlideIn 0.5s ease 0.08s both;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 尊重使用者減少動態效果設定 */
+@media (prefers-reduced-motion: reduce) {
+  .period i,
+  .period.active i,
+  .panel.switching-in .intro,
+  .panel.switching-in .cards-area {
+    animation: none;
+    transition: none;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -39,7 +100,25 @@ function render(){
  $('cards').innerHTML=data.length?data.slice(page*perPage,(page+1)*perPage).map(p=>`<button class="card" data-id="${p.id}"><div class="card-visual"><img src="${p.image}" alt="" loading="lazy" onerror="this.style.display='none'"><span class="card-year">${p.year}</span><span class="card-category">${p.category}</span></div><div class="card-bottom"><span>${p.title}</span><span class="arrow">›</span></div></button>`).join(''):'<div class="empty">此時期／分類的專案內容尚待新增。</div>';
  $('status').textContent=`${page+1} / ${pages}`;$('prev').disabled=page===0;$('next').disabled=page>=pages-1;
 }
-$('timeline').addEventListener('click',e=>{const b=e.target.closest('[data-period]');if(!b)return;current=b.dataset.period;page=0;render()});
+
+$('timeline').addEventListener('click', e => {
+  const b = e.target.closest('[data-period]');
+  if (!b || b.dataset.period === current) return;
+
+  current = b.dataset.period;
+  page = 0;
+
+  const panel = document.querySelector('.panel');
+
+  // 更新時間軸與專案內容
+  render();
+
+  // 重新啟動進場動畫
+  panel.classList.remove('switching-in');
+  void panel.offsetWidth;
+  panel.classList.add('switching-in');
+});
+
 $('filters').addEventListener('click',e=>{const b=e.target.closest('[data-category]');if(!b)return;category=b.dataset.category;page=0;render()});
 $('prev').onclick=()=>{page--;render()};$('next').onclick=()=>{page++;render()};
 $('cards').addEventListener('click',e=>{const b=e.target.closest('[data-id]');if(!b)return;const p=projects.find(p=>p.id===Number(b.dataset.id));$('detailMeta').textContent=`${p.year}　｜　${p.category}`;$('detailTitle').textContent=p.title;$('detailDesc').textContent=p.desc;const img=$('detailImg');img.hidden=false;img.src=p.image;img.onerror=()=>{img.hidden=true};$('detail').showModal()});
