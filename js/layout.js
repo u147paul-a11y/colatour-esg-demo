@@ -24,3 +24,29 @@
  document.querySelectorAll('.site-header .dropdown a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('mobile-open');toggle.setAttribute('aria-expanded','false')}));
  document.addEventListener('click',e=>{if(!e.target.closest('.site-header .nav-item'))document.querySelectorAll('.site-header .nav-item.open').forEach(item=>{item.classList.remove('open');item.querySelector('button.nav-link')?.setAttribute('aria-expanded','false')})});
 })();
+
+/* 修復共用導覽列下拉選單被遮住的問題 */
+.site-header {
+  overflow: visible !important;
+}
+
+.site-header .nav-wrap,
+.site-header .nav,
+.site-header .nav-item {
+  overflow: visible;
+}
+
+@media (min-width: 901px) {
+  .site-header .nav-item:hover > .dropdown,
+  .site-header .nav-item:focus-within > .dropdown,
+  .site-header .nav-item.open > .dropdown {
+    display: block !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1100;
+    background: #ffffff;
+    min-width: 190px;
+    box-shadow: 0 14px 30px rgba(0, 27, 22, 0.25);
+  }
+}
