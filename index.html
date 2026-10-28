@@ -103,22 +103,10 @@ h2{font-size:clamp(30px,4vw,48px);line-height:1.35;margin:0 0 22px;color:var(--g
   }
 }
 </style>
+<link rel="stylesheet" href="css/layout.css">
 </head>
 <body>
-<header class="site-header">
-  <div class="nav-wrap">
-    <a class="brand" href="#home" aria-label="可樂旅遊，回到首頁"><img src="image/main/logo.png" alt="可樂旅遊 Logo" class="brand-logo"></a>
-    <button class="menu-toggle" aria-expanded="false" aria-label="開啟選單">☰ 選單</button>
-    <nav class="nav" aria-label="主要導覽">
-      <div class="nav-item"><button class="nav-link" aria-expanded="false">永續藍圖 <span class="chevron">⌄</span></button><div class="dropdown"><a href="#home">永續願景</a><a href="#story">永續策略</a><a href="#commitment">未來承諾</a></div></div>
-      <div class="nav-item"><button class="nav-link" aria-expanded="false">永續經營 <span class="chevron">⌄</span></button><div class="dropdown"><a href="#stats">公司治理</a><a href="#stats">環境管理</a><a href="#stats">責任供應鏈</a></div></div>
-      <div class="nav-item"><button class="nav-link" aria-expanded="false">最新消息 <span class="chevron">⌄</span></button><div class="dropdown"><a href="#story">永續焦點</a><a href="#story">活動消息</a><a href="#story">媒體報導</a></div></div>
-      <div class="nav-item"><button class="nav-link" aria-expanded="false">幸福里程碑 <span class="chevron">⌄</span></button><div class="dropdown"><a href="#stats">永續成果</a><a href="#stats">年度報告</a></div></div>
-      <div class="nav-item"><button class="nav-link" aria-expanded="false">永續旅遊 <span class="chevron">⌄</span></button><div class="dropdown"><a href="#story">友善旅遊</a><a href="#story">生態保育</a><a href="#story">在地共好</a></div></div>
-      <div class="nav-item"><button class="nav-link" aria-expanded="false">公益行動 <span class="chevron">⌄</span></button><div class="dropdown"><a href="#story">公益參與</a><a href="#story">志工行動</a><a href="#commitment">合作夥伴</a></div></div>
-    </nav>
-  </div>
-</header>
+<div id="site-header"></div>
 <main>
   <section class="hero" id="home">
     <div class="hero-bg" data-parallax style="background-image:url('image/main/01.avif')"></div>
@@ -166,50 +154,8 @@ h2{font-size:clamp(30px,4vw,48px);line-height:1.35;margin:0 0 22px;color:var(--g
     </div>
   </section>
 </main>
-<footer class="footer">
-  <div class="footer-inner">
-    <a class="brand" href="#home" aria-label="可樂旅遊，回到首頁">
-  <img src="image/main/logo.png" alt="可樂旅遊 Logo" class="brand-logo"></a>
-    <div class="footer-links"><a href="#home">永續藍圖</a><a href="#stats">永續成果</a><a href="#story">公益行動</a><a href="#commitment">聯絡我們</a></div>
-    <div>© 2026 ColaTour Co., Ltd. All rights reserved.　｜　網站互動 Demo</div>
-  </div>
-</footer>
+<div id="site-footer"></div>
 <script>
-const header = document.querySelector('.site-header');
-const menuToggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.nav');
-
-menuToggle.addEventListener('click', () => {
-  const opened = nav.classList.toggle('mobile-open');
-  menuToggle.setAttribute('aria-expanded', String(opened));
-});
-document.querySelectorAll('.nav-link').forEach(button => {
-  button.addEventListener('click', () => {
-    const item = button.closest('.nav-item');
-    const isOpen = item.classList.toggle('open');
-    button.setAttribute('aria-expanded', String(isOpen));
-    document.querySelectorAll('.nav-item').forEach(other => {
-      if (other !== item) {
-        other.classList.remove('open');
-        other.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
-      }
-    });
-  });
-});
-document.querySelectorAll('.dropdown a').forEach(link => link.addEventListener('click', () => {
-  nav.classList.remove('mobile-open');
-  menuToggle.setAttribute('aria-expanded', 'false');
-  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('open'));
-}));
-document.addEventListener('click', event => {
-  if (!event.target.closest('.nav-item')) {
-    document.querySelectorAll('.nav-item').forEach(item => {
-      item.classList.remove('open');
-      item.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
-    });
-  }
-});
-
 // 區塊進入畫面時淡入，並依序啟動數字動畫
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -261,5 +207,6 @@ window.addEventListener('scroll', () => {
 }, {passive:true});
 updateParallax();
 </script>
+<script src="js/layout.js"></script>
 </body>
 </html>
