@@ -8,40 +8,6 @@
 
 /* 時間軸圓點動畫 */
   
-/* 修正時間軸：年份、圓點與連接線對齊 */
-.timeline {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  position: relative;
-}
-
-.timeline::before {
-  left: 16.6667%;
-  right: 16.6667%;
-  top: 38px;
-}
-
-.timeline .period {
-  width: 100%;
-  min-width: 0;
-  margin: 0;
-  padding: 0 8px 18px;
-  text-align: center;
-}
-
-.timeline .period span {
-  display: block;
-  width: 100%;
-  margin-bottom: 14px;
-  text-align: center;
-}
-
-.timeline .period i {
-  display: block;
-  width: 18px;
-  height: 18px;
-  margin: 0 auto;
-}
 
 .period i {
   transition: all 0.4s ease;
@@ -100,6 +66,49 @@
     animation: none;
     transition: none;
   }
+}
+
+/* 時間軸三個年份與圓點精準對齊 */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  position: relative;
+}
+
+.timeline .period {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  padding: 0 8px 18px;
+  margin: 0;
+  text-align: center;
+}
+
+.timeline .period span {
+  display: block;
+  width: 100%;
+  margin: 0 0 14px;
+  text-align: center;
+  line-height: 24px;
+}
+
+.timeline .period i {
+  display: block;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+/* 連接線通過三個圓點的中心 */
+.timeline::before {
+  top: 46px;
+  left: 16.6667%;
+  right: 16.6667%;
+  height: 2px;
 }
 
 </style>
