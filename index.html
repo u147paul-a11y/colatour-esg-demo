@@ -15,6 +15,13 @@ button{font:inherit}
 .site-header{position:fixed;inset:0 0 auto;z-index:1000;background:rgba(4,43,33,.91);backdrop-filter:blur(12px);color:white;border-bottom:1px solid rgba(255,255,255,.12)}
 .nav-wrap{max-width:1440px;margin:auto;min-height:72px;padding:0 5%;display:flex;align-items:center;gap:26px}
 .brand{display:flex;align-items:center;gap:9px;white-space:nowrap;font-weight:800;font-size:15px;margin-right:auto}
+  .brand-logo {
+  display: block;
+  width: auto;
+  height: 42px;
+  max-width: 200px;
+  object-fit: contain;
+}
 .brand-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:white;color:#d64b68;font-size:10px;font-weight:900;line-height:1.05;text-align:center}
 .nav{display:flex;align-items:center;gap:3px}
 .nav-item{position:relative}
@@ -100,7 +107,7 @@ h2{font-size:clamp(30px,4vw,48px);line-height:1.35;margin:0 0 22px;color:var(--g
 <body>
 <header class="site-header">
   <div class="nav-wrap">
-    <a class="brand" href="#home" aria-label="可樂旅遊，回到首頁"><span class="brand-mark">cola<br>tour</span><span>可樂旅遊</span></a>
+    <a class="brand" href="#home" aria-label="可樂旅遊，回到首頁"><img src="image/maon/logo.png" alt="可樂旅遊 Logo" class="brand-logo"></a>
     <button class="menu-toggle" aria-expanded="false" aria-label="開啟選單">☰ 選單</button>
     <nav class="nav" aria-label="主要導覽">
       <div class="nav-item"><button class="nav-link" aria-expanded="false">永續藍圖 <span class="chevron">⌄</span></button><div class="dropdown"><a href="#home">永續願景</a><a href="#story">永續策略</a><a href="#commitment">未來承諾</a></div></div>
@@ -161,7 +168,8 @@ h2{font-size:clamp(30px,4vw,48px);line-height:1.35;margin:0 0 22px;color:var(--g
 </main>
 <footer class="footer">
   <div class="footer-inner">
-    <a class="brand" href="#home"><span class="brand-mark">cola<br>tour</span><span>可樂旅遊</span></a>
+    <a class="brand" href="#home" aria-label="可樂旅遊，回到首頁">
+  <img src="image/main/logo.png" alt="可樂旅遊 Logo" class="brand-logo"></a>
     <div class="footer-links"><a href="#home">永續藍圖</a><a href="#stats">永續成果</a><a href="#story">公益行動</a><a href="#commitment">聯絡我們</a></div>
     <div>© 2026 ColaTour Co., Ltd. All rights reserved.　｜　網站互動 Demo</div>
   </div>
