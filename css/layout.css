@@ -32,12 +32,48 @@ body{padding-top:72px}
  .site-footer .footer-inner{align-items:flex-start;flex-direction:column}
 }
 
-/* 公司正式 Logo */
-.site-header .brand-logo,
-.site-footer .brand-logo {
-  display: block;
-  width: auto;
-  height: 42px;
-  max-width: 200px;
-  object-fit: contain;
+/* 避免里程碑舊版導覽列樣式影響共用 Header */
+.site-header .nav {
+  height: auto;
+  min-height: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  justify-content: flex-end;
+  gap: 3px;
+}
+
+.site-header .nav-link {
+  color: #ffffff;
+  border-bottom: none;
+}
+
+.site-header .nav-link:hover {
+  color: #f2b51d;
+}
+
+@media (max-width: 900px) {
+  .site-header .nav {
+    position: absolute;
+    top: 66px;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    background: #063d2e;
+    padding: 8px 5% 18px;
+    max-height: 75vh;
+    overflow-y: auto;
+  }
+
+  .site-header .nav.mobile-open {
+    display: flex;
+  }
+}
+/* 手機版選單排列修正 */
+@media (max-width: 900px) {
+  .site-header .nav.mobile-open {
+    justify-content: flex-start;
+  }
 }
