@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="可樂旅遊永續網站首頁互動展示 Demo">
+<title>永續可樂，讓世界更美好｜可樂旅遊</title>
+<style>
+:root{--green:#063d2e;--green2:#0d5942;--cream:#f4f3ed;--gold:#f2b51d;--ink:#173d32;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--ink);background:var(--cream)}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.site-header{position:fixed;inset:0 0 auto;z-index:1000;background:rgba(4,43,33,.91);backdrop-filter:blur(12px);color:white;border-bottom:1px solid rgba(255,255,255,.12)}
+.nav-wrap{max-width:1440px;margin:auto;min-height:72px;padding:0 5%;display:flex;align-items:center;gap:26px}
+.brand{display:flex;align-items:center;gap:9px;white-space:nowrap;font-weight:800;font-size:15px;margin-right:auto}
+.brand-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:white;color:#d64b68;font-size:10px;font-weight:900;line-height:1.05;text-align:center}
+.nav{display:flex;align-items:center;gap:3px}
+.nav-item{position:relative}
+.nav-link{display:flex;align-items:center;gap:6px;border:0;background:none;color:white;padding:25px 10px;font-size:13px;cursor:pointer;white-space:nowrap}
+.nav-link:hover,.nav-link:focus-visible{color:var(--gold)}
+.chevron{font-size:10px;opacity:.8}
+.dropdown{display:none;position:absolute;top:100%;left:0;min-width:190px;padding:8px;background:#fff;color:var(--ink);border-radius:0 0 12px 12px;box-shadow:0 14px 30px #001b1640}
+.nav-item:hover .dropdown,.nav-item:focus-within .dropdown,.nav-item.open .dropdown{display:block}
+.dropdown a{display:block;padding:11px 12px;border-radius:7px;font-size:13px}
+.dropdown a:hover{background:#edf4ef;color:#08724f}
+.menu-toggle{display:none;background:none;color:#fff;border:1px solid #ffffff60;border-radius:8px;padding:7px 10px}
+section{position:relative;overflow:hidden}
+.hero{min-height:100svh;display:flex;align-items:center;color:#fff;background:#173d32}
+.hero-bg{position:absolute;inset:0;background-position:center;background-size:cover;transform:scale(1.04);transition:transform 1.2s ease}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,29,21,.76),rgba(0,32,25,.2) 72%),linear-gradient(0deg,rgba(0,20,15,.24),transparent 50%)}
+.hero-content{position:relative;z-index:2;width:min(1180px,90%);margin:80px auto 40px}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#f6c44b;margin-bottom:20px}
+.hero h1{font-size:clamp(42px,6vw,76px);line-height:1.25;letter-spacing:.04em;margin:0 0 20px;font-weight:800}
+.gold{color:var(--gold)}
+.hero p{font-size:clamp(15px,1.5vw,18px);line-height:1.9;max-width:520px;margin:0 0 28px;color:#f1f5f0}
+.pill-link{display:inline-flex;align-items:center;gap:12px;border:1px solid #ffffff90;border-radius:30px;padding:12px 18px;font-size:13px;transition:.25s}
+.pill-link:hover{background:white;color:var(--green);transform:translateY(-2px)}
+.scroll-hint{position:absolute;z-index:2;bottom:28px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.18em;color:#ffffffc9;display:flex;align-items:center;gap:10px}
+.scroll-hint:before{content:"";width:1px;height:30px;background:#ffffff90}
+.section-inner{width:min(1180px,90%);margin:auto}
+.story{padding:100px 0;background:var(--cream)}
+.story-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:8%;align-items:center}
+.kicker{color:#a87500;font-size:12px;letter-spacing:.2em;font-weight:800;margin-bottom:16px}
+h2{font-size:clamp(30px,4vw,48px);line-height:1.35;margin:0 0 22px;color:var(--green);letter-spacing:.03em}
+.body-copy{font-size:15px;line-height:2;color:#53645c;margin:0 0 26px}
+.photo-frame{position:relative;border-radius:130px 130px 130px 130px;overflow:hidden;min-height:350px;box-shadow:0 16px 45px #163d2d18}
+.photo-frame img{position:absolute;width:100%;height:100%;inset:0;object-fit:cover;transition:transform 1.2s}
+.photo-frame:hover img{transform:scale(1.05)}
+.photo-tag{position:absolute;bottom:18px;left:20px;background:#073d2dcc;color:white;padding:10px 14px;border-radius:30px;font-size:12px;backdrop-filter:blur(8px)}
+.stats{padding:78px 0 84px;background:var(--green);color:#fff}
+.stats .kicker{color:#b6d9c8}
+.stats h2{color:#fff;text-align:center;margin-bottom:14px}
+.stats-intro{text-align:center;color:#d4e3dc;max-width:620px;margin:0 auto 42px;line-height:1.8}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stat{padding:18px 22px;text-align:center;border-right:1px solid #ffffff25}
+.stat:last-child{border-right:0}
+.stat-icon{font-size:30px;margin-bottom:14px;color:#c1dfcf}
+.stat-number{font-size:clamp(28px,3vw,42px);font-weight:700;letter-spacing:-.03em;margin-bottom:8px}
+.stat-label{font-size:14px;font-weight:700;margin-bottom:10px}
+.stat p{font-size:12px;line-height:1.8;color:#c7d9d0;margin:0}
+.closing{min-height:78vh;display:flex;align-items:center;color:white;background:#173d32}
+.closing-bg{position:absolute;inset:-5% 0;background-position:center;background-size:cover;will-change:transform;transform:scale(1.08)}
+.closing::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#032b22d9,#032b2260 65%,#032b2220)}
+.closing-content{position:relative;z-index:2;width:min(1180px,90%);margin:80px auto}
+.closing h2{color:#fff;max-width:680px}
+.closing p{max-width:570px;line-height:1.9;color:#e1ece6}
+.footer{background:#032f24;color:#d8e5de;padding:28px 5%}
+.footer-inner{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:11px}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer a:hover{color:var(--gold)}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{transform:translateX(-34px)}
+.reveal-left.visible{transform:translateX(0)}
+.reveal-right{transform:translateX(34px)}
+.reveal-right.visible{transform:translateX(0)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}}
+@media(max-width:900px){
+ .nav-wrap{min-height:66px;gap:12px}.menu-toggle{display:block}.nav{display:none;position:absolute;top:66px;left:0;right:0;background:#063d2e;padding:8px 5% 18px;max-height:75vh;overflow:auto;align-items:stretch;flex-direction:column}
+ .nav.mobile-open{display:flex}.nav-item{width:100%}.nav-link{width:100%;justify-content:space-between;padding:14px 8px}.dropdown{position:static;box-shadow:none;border-radius:8px;margin:0 8px 8px;min-width:0}.nav-item:hover .dropdown{display:none}.nav-item.open .dropdown,.nav-item:focus-within .dropdown{display:block}
+ .story-grid{grid-template-columns:1fr;gap:35px}.photo-frame{min-height:320px;border-radius:70px}.stat-grid{grid-template-columns:repeat(2,1fr);row-gap:25px}.stat:nth-child(2){border-right:0}.stat:nth-child(3){border-top:1px solid #ffffff25;padding-top:28px}.stat:nth-child(4){border-top:1px solid #ffffff25;padding-top:28px}
+ .footer-inner{align-items:flex-start;flex-direction:column}
+}
+@media(max-width:520px){.hero{min-height:88svh}.hero h1{font-size:42px}.hero-content{margin-top:100px}.story{padding:72px 0}.photo-frame{min-height:260px}.stat{padding:14px 10px}.stat-number{font-size:28px}.stat-label{font-size:12px}.closing{min-height:70vh}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="#home" aria-label="可樂旅遊，回到首頁"><span class="brand-mark">cola<br>tour</span><span>可樂旅遊</span></a>
+    <button class="menu-toggle" aria-expanded="false" aria-label="開啟選單">☰ 選單</button>
+    <nav class="nav" aria-label="主要導覽">
+      <div class="nav-item"><button class="nav-link" aria-expanded="false">永續藍圖 <span class="chevron">⌄</span></button><div class="dropdown"><a href="#home">永續願景</a><a href="#story">永續策略</a><a href="#commitment">未來承諾</a></div></div>
+      <div class="nav-item"><button class="nav-link" aria-expanded="false">永續經營 <span class="chevron">⌄</span></button><div class="dropdown"><a href="#stats">公司治理</a><a href="#stats">環境管理</a><a href="#stats">責任供應鏈</a></div></div>
+      <div class="nav-item"><button class="nav-link" aria-expanded="false">最新消息 <span class="chevron">⌄</span></button><div class="dropdown"><a href="#story">永續焦點</a><a href="#story">活動消息</a><a href="#story">媒體報導</a></div></div>
+      <div class="nav-item"><button class="nav-link" aria-expanded="false">幸福里程碑 <span class="chevron">⌄</span></button><div class="dropdown"><a href="#stats">永續成果</a><a href="#stats">年度報告</a></div></div>
+      <div class="nav-item"><button class="nav-link" aria-expanded="false">永續旅遊 <span class="chevron">⌄</span></button><div class="dropdown"><a href="#story">友善旅遊</a><a href="#story">生態保育</a><a href="#story">在地共好</a></div></div>
+      <div class="nav-item"><button class="nav-link" aria-expanded="false">公益行動 <span class="chevron">⌄</span></button><div class="dropdown"><a href="#story">公益參與</a><a href="#story">志工行動</a><a href="#commitment">合作夥伴</a></div></div>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="hero" id="home">
+    <div class="hero-bg" data-parallax style="background-image:url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2200&q=85')"></div>
+    <div class="hero-content">
+      <div class="eyebrow reveal">Travel for a better world</div>
+      <h1 class="reveal">永續可樂，<br>讓世界更<span class="gold">美好</span></h1>
+      <p class="reveal">從每一次旅行開始，與地球及地方人同行，<br>用更負責任的旅行方式，為世界留下更多美好。</p>
+      <a class="pill-link reveal" href="#story">◎　每一趟旅程，都是一種看世界的方式　→</a>
+    </div>
+    <div class="scroll-hint">SCROLL TO EXPLORE</div>
+  </section>
+  <section class="story" id="story">
+    <div class="section-inner story-grid">
+      <div class="reveal reveal-left">
+        <div class="kicker">TRAVEL WITH PURPOSE</div>
+        <h2>讓旅行成為<br>改變世界的力量</h2>
+        <p class="body-copy">可樂旅遊相信，旅行可以探索世界，也能帶來正向改變。從友善旅遊與生態保育，到在地共好與公益參與，我們持續用實際行動，讓每一趟旅程都更有意義。</p>
+        <a class="pill-link" href="#stats">了解更多　→</a>
+      </div>
+      <div class="photo-frame reveal reveal-right">
+        <img src="https://images.unsplash.com/photo-1516026672322-b0d2b2a3b2cd?auto=format&fit=crop&w=1400&q=85" alt="自然環境與野生動物" loading="lazy">
+        <span class="photo-tag">從旅行開始，實踐永續</span>
+      </div>
+    </div>
+  </section>
+  <section class="stats" id="stats">
+    <div class="section-inner">
+      <div class="kicker reveal" style="text-align:center">OUR IMPACT</div>
+      <h2 class="reveal">用行動累積，讓改變被看見</h2>
+      <p class="stats-intro reveal">每一個數字，都是持續前進的足跡。以下為首頁視覺 Demo 示意數據，正式上線前請替換為公司確認的最新資料。</p>
+      <div class="stat-grid">
+        <div class="stat reveal"><div class="stat-icon">♧</div><div class="stat-number" data-count="12580">0</div><div class="stat-label">年度減碳排放量</div><p>持續盤查與管理環境影響，讓低碳行動成為日常。</p></div>
+        <div class="stat reveal"><div class="stat-icon">♧</div><div class="stat-number" data-count="45680">0</div><div class="stat-label">永續旅遊參與</div><p>透過多元永續旅遊體驗，一起實踐負責任的旅行。</p></div>
+        <div class="stat reveal"><div class="stat-icon">♡</div><div class="stat-number" data-count="8760000">0</div><div class="stat-label">地方／保育投入金額</div><p>支持在地社區與環境保育，創造正向的社會影響。</p></div>
+        <div class="stat reveal"><div class="stat-icon">♧</div><div class="stat-number" data-count="128">0</div><div class="stat-label">綠色／永續合作夥伴</div><p>與供應鏈夥伴攜手合作，開展永續旅遊新未來。</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="closing" id="commitment">
+    <div class="closing-bg" data-parallax style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2200&q=85')"></div>
+    <div class="closing-content">
+      <div class="kicker reveal" style="color:#f6c44b">A PROMISE TO THE WORLD</div>
+      <h2 class="reveal">永續，是我們與世界的長期承諾。</h2>
+      <p class="reveal">我們持續以旅行實踐對環境、地方與人的關懷，與每一位旅人一起，為世界留下更美好的未來。</p>
+      <a class="pill-link reveal" href="#home">永續旅程，現在開始　→</a>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <a class="brand" href="#home"><span class="brand-mark">cola<br>tour</span><span>可樂旅遊</span></a>
+    <div class="footer-links"><a href="#home">永續藍圖</a><a href="#stats">永續成果</a><a href="#story">公益行動</a><a href="#commitment">聯絡我們</a></div>
+    <div>© 2026 ColaTour Co., Ltd. All rights reserved.　｜　網站互動 Demo</div>
+  </div>
+</footer>
+<script>
+const header = document.querySelector('.site-header');
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.nav');
+
+menuToggle.addEventListener('click', () => {
+  const opened = nav.classList.toggle('mobile-open');
+  menuToggle.setAttribute('aria-expanded', String(opened));
+});
+document.querySelectorAll('.nav-link').forEach(button => {
+  button.addEventListener('click', () => {
+    const item = button.closest('.nav-item');
+    const isOpen = item.classList.toggle('open');
+    button.setAttribute('aria-expanded', String(isOpen));
+    document.querySelectorAll('.nav-item').forEach(other => {
+      if (other !== item) {
+        other.classList.remove('open');
+        other.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+});
+document.querySelectorAll('.dropdown a').forEach(link => link.addEventListener('click', () => {
+  nav.classList.remove('mobile-open');
+  menuToggle.setAttribute('aria-expanded', 'false');
+  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('open'));
+}));
+document.addEventListener('click', event => {
+  if (!event.target.closest('.nav-item')) {
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.classList.remove('open');
+      item.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
+    });
+  }
+});
+
+// 區塊進入畫面時淡入，並依序啟動數字動畫
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      const number = entry.target.querySelector('[data-count]') || (entry.target.matches('[data-count]') ? entry.target : null);
+      if (number && !number.dataset.done) animateNumber(number);
+      entry.target.querySelectorAll('[data-count]').forEach(animateNumber);
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {threshold: 0.18});
+document.querySelectorAll('.reveal, .stat').forEach(el => revealObserver.observe(el));
+
+function animateNumber(el) {
+  if (el.dataset.done) return;
+  el.dataset.done = 'true';
+  const target = Number(el.dataset.count);
+  const duration = 1500;
+  const start = performance.now();
+  function step(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(target * eased).toLocaleString('zh-TW');
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// 背景隨頁面捲動產生輕微視差；減少動態效果設定會自動停用
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const parallaxLayers = document.querySelectorAll('[data-parallax]');
+function updateParallax() {
+  if (reduceMotion) return;
+  parallaxLayers.forEach(layer => {
+    const section = layer.closest('section');
+    const rect = section.getBoundingClientRect();
+    const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+    const offset = (progress - .5) * 48;
+    layer.style.transform = `scale(1.08) translateY(${offset}px)`;
+  });
+}
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => { updateParallax(); ticking = false; });
+    ticking = true;
+  }
+}, {passive:true});
+updateParallax();
+</script>
+</body>
+</html>
