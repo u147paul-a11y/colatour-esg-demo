@@ -24,24 +24,3 @@
  document.querySelectorAll('.site-header .dropdown a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('mobile-open');toggle.setAttribute('aria-expanded','false')}));
  document.addEventListener('click',e=>{if(!e.target.closest('.site-header .nav-item'))document.querySelectorAll('.site-header .nav-item.open').forEach(item=>{item.classList.remove('open');item.querySelector('button.nav-link')?.setAttribute('aria-expanded','false')})});
 })();
-
-
-/* 修復桌面版導覽列下拉選單 */
-@media (min-width: 901px) {
-  .site-header,
-  .site-header .nav-wrap,
-  .site-header .nav,
-  .site-header .nav-item {
-    overflow: visible;
-  }
-
-  .site-header .nav-item:hover > .dropdown,
-  .site-header .nav-item:focus-within > .dropdown,
-  .site-header .nav-item.open > .dropdown {
-    display: block;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1100;
-  }
-}
