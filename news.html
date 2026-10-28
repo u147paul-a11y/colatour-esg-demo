@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>永續新訊｜可樂旅遊永續網站</title>
+<meta name="description" content="可樂旅遊永續新訊展示頁，包含永續動態、認證與證書及獎項與肯定。">
+<link rel="stylesheet" href="css/layout.css">
+<style>
+:root{--green:#174d32;--deep:#073428;--muted:#617268;--cream:#f7f8f5;--border:#e3e9e2}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:#263b30}
+button,input{font:inherit}
+.news-hero{position:relative;min-height:300px;display:flex;align-items:center;background:linear-gradient(90deg,rgba(5,44,41,.82),rgba(7,61,62,.15)),url("image/main/01.avif") center 48%/cover;color:#fff}
+.news-hero-inner{width:min(1200px,92%);margin:auto;position:relative;z-index:1}
+.news-hero .eyebrow{font-size:12px;letter-spacing:.25em;font-weight:700}
+.news-hero h1{font-size:clamp(36px,5vw,60px);margin:10px 0 8px;letter-spacing:.07em}
+.news-hero p{margin:0;font-size:17px;letter-spacing:.09em}
+.hero-quote{position:absolute;right:7%;bottom:38px;color:#fff;font-size:19px;font-style:italic;line-height:1.5;transform:rotate(-7deg);text-shadow:0 2px 8px #0008}
+.news-main{width:min(1200px,92%);margin:0 auto;padding:34px 0 76px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:24px}
+.tabs{display:flex;flex-wrap:wrap;gap:9px}
+.tab{border:1px solid transparent;background:#eef1ed;border-radius:25px;padding:10px 20px;color:#53675a;cursor:pointer;font-size:14px;font-weight:700;transition:.2s}
+.tab:hover{background:#e0e9e0}
+.tab.active{background:var(--green);color:#fff}
+.search-box{display:flex;align-items:center;gap:8px;border:1px solid #e0e6df;border-radius:24px;background:#fff;padding:0 15px;min-width:230px}
+.search-box input{border:0;outline:0;background:transparent;padding:11px 0;width:100%;font-size:13px}
+.search-box svg{flex:none;color:#65746c}
+.news-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.news-card{background:#fff;border:1px solid var(--border);border-radius:11px;overflow:hidden;box-shadow:0 5px 15px #173b2510;display:flex;flex-direction:column;min-width:0;transition:transform .2s,box-shadow .2s}
+.news-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px #173b2520}
+.news-photo{height:170px;position:relative;background:#b4cbb7;overflow:hidden}
+.news-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.news-photo .fallback{position:absolute;inset:0;display:grid;place-items:center;font-size:56px;background:linear-gradient(135deg,#d9e8db,#6f9e91);color:#fff}
+.news-photo img:not([hidden])+.fallback{display:none}
+.tag{position:absolute;bottom:10px;left:12px;border-radius:18px;background:#fff;color:var(--green);font-size:11px;font-weight:800;padding:5px 11px;box-shadow:0 1px 5px #0002}
+.tag.award{color:#a15d31}
+.card-content{padding:16px 16px 15px;display:flex;flex-direction:column;flex:1}
+.date{font-size:12px;color:#7a8a7f;margin-bottom:6px}
+.news-card h2{font-size:18px;line-height:1.4;letter-spacing:.01em;margin:0 0 9px;min-height:50px}
+.summary{font-size:13px;line-height:1.7;color:#66776b;margin:0 0 16px;flex:1}
+.read-more{align-self:flex-end;border:0;background:none;color:var(--green);font-weight:800;font-size:13px;cursor:pointer;padding:4px 0}
+.read-more:hover{text-decoration:underline}
+.pagination{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:35px}
+.page-btn{border:1px solid #e1e8e1;background:#fff;border-radius:50%;width:37px;height:37px;cursor:pointer;color:#3d5544}
+.page-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
+.page-btn:disabled{opacity:.35;cursor:default}
+.empty{grid-column:1/-1;text-align:center;padding:75px 20px;color:#6c7e71;background:#fff;border-radius:12px}
+.subscribe{background:linear-gradient(155deg,#f6faf7,#e3f0ed);border-top:1px solid #e2ebe5;padding:34px 4%}
+.subscribe-inner{width:min(1200px,100%);margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.subscribe strong{display:block;color:var(--green);font-size:20px;letter-spacing:.07em}
+.subscribe small{display:block;margin-top:8px;letter-spacing:.14em;color:#668477}
+.subscribe button{border:1px solid var(--green);color:var(--green);background:transparent;padding:12px 22px;border-radius:30px;font-weight:700;cursor:pointer}
+.subscribe button:hover{background:var(--green);color:#fff}
+.dialog{border:0;border-radius:16px;width:min(680px,92vw);max-height:88vh;padding:0;box-shadow:0 25px 80px #0005}
+.dialog::backdrop{background:#061d16a8}
+.dialog-inner{padding:32px}
+.dialog-close{float:right;border:0;border-radius:50%;background:#edf2ed;width:36px;height:36px;font-size:23px;cursor:pointer}
+.dialog h2{font-size:28px;line-height:1.4;margin:14px 0}
+.dialog p{line-height:1.9;color:#586c5d}
+.demo-note{margin-top:20px;padding:12px 15px;border-radius:8px;background:#f2f5f0;font-size:12px;color:#657469}
+@media(max-width:1000px){.news-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:750px){.news-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.toolbar{align-items:stretch;flex-direction:column}.search-box{width:100%}.news-hero{min-height:240px}.hero-quote{display:none}.news-photo{height:145px}}
+@media(max-width:470px){.news-grid{grid-template-columns:1fr}.news-photo{height:200px}.subscribe-inner{flex-direction:column;align-items:flex-start}.tab{padding:9px 13px;font-size:12px}.news-card h2{min-height:0}}
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+<section class="news-hero" aria-labelledby="news-title"><div class="news-hero-inner"><div class="eyebrow">ESG NEWS</div><h1 id="news-title">永續新訊</h1><p>用旅行串起更多可能，讓世界更美好。</p></div><div class="hero-quote">Travel for<br>a Better Tomorrow</div></section>
+<main class="news-main">
+<div class="toolbar"><div class="tabs" id="tabs" aria-label="新聞分類"></div><label class="search-box"><input id="search" type="search" placeholder="搜尋關鍵字" aria-label="搜尋新聞"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg></label></div>
+<section class="news-grid" id="news-grid" aria-label="新聞列表"></section>
+<nav class="pagination" id="pagination" aria-label="新聞分頁"></nav>
+</main>
+<section class="subscribe"><div class="subscribe-inner"><div><strong>每一期消息，都是更好的起點。</strong><small>Travel for a Better Tomorrow</small></div><button id="subscribe-btn" type="button">訂閱永續消息　⌄</button></div></section>
+<div id="site-footer"></div>
+<dialog class="dialog" id="detail"><div class="dialog-inner"><button class="dialog-close" id="close" aria-label="關閉">×</button><div id="detail-date" class="date"></div><h2 id="detail-title"></h2><p id="detail-text"></p><div class="demo-note">此頁為版型展示，新聞標題、日期及內容均為示範資料，尚未經可樂旅遊確認或正式發布。</div></div></dialog>
+<script>
+/* 示範新聞：參考設計圖建立，非真實發布資訊。圖片先以視覺示意呈現。 */
+const news=[
+ {date:"2026.08",cat:"認證與證書",title:"取得交通部觀光署銀級環保旅行業認證",summary:"從營運管理到旅遊服務，持續落實低碳行動，朝更永續的旅遊模式邁進。",photo:"certificate",symbol:"▣"},
+ {date:"2026.06",cat:"永續動態",title:"推動綠色旅遊產品",summary:"以更友善環境的旅遊設計，串聯在地資源，創造旅遊與環境的共好。",photo:"coast",symbol:"❧"},
+ {date:"2026.04",cat:"永續動態",title:"響應地球日，與旅人一起減碳旅行",summary:"從低碳設計到出遊實踐，邀請旅人用行動支持更低碳的旅行方式。",photo:"earth",symbol:"◎"},
+ {date:"2025.12",cat:"獎項與肯定",title:"榮獲森林永續評鑑「卓越精進獎」",summary:"以實際行動落實企業永續，持續獲得外部肯定。",photo:"award",symbol:"✦"},
+ {date:"2025.08",cat:"認證與證書",title:"取得 ISO 27001 國際資安認證",summary:"強化資訊安全管理，守護旅客與企業資料。",photo:"security",symbol:"◇"},
+ {date:"2025.06",cat:"永續動態",title:"校園永續觀光分享",summary:"走進校園，分享永續旅行理念，陪伴更多年輕世代看見永續旅遊的力量。",photo:"campus",symbol:"♧"},
+ {date:"2025.03",cat:"認證與證書",title:"環保標章旅館永續旅遊推廣",summary:"串聯更多友善環境的住宿夥伴，打造更負責任的旅遊選擇。",photo:"hotel",symbol:"❀"},
+ {date:"2024.10",cat:"獎項與肯定",title:"《解凍格陵蘭》公益放映活動",summary:"透過影像，喚起更多人關注氣候變遷與環境議題。",photo:"glacier",symbol:"❄"}
+];
+const photoStyles={
+ certificate:"linear-gradient(140deg,#e8eee4,#71957d)",coast:"linear-gradient(150deg,#6eafc1,#145f71 55%,#5d9a74)",earth:"linear-gradient(140deg,#c9d6aa,#3e8c73)",award:"linear-gradient(140deg,#234f30,#a4a46b)",security:"linear-gradient(140deg,#0d364d,#3188a1)",campus:"linear-gradient(140deg,#b5d8a7,#398768)",hotel:"linear-gradient(140deg,#d6e6c4,#789e78)",glacier:"linear-gradient(140deg,#d5e9ee,#638ea7)"
+};
+let selected="全部",page=1;
+const perPage=8;
+const cats=["全部","永續動態","認證與證書","獎項與肯定"];
+const tabs=document.getElementById("tabs"),grid=document.getElementById("news-grid"),pager=document.getElementById("pagination"),search=document.getElementById("search");
+const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function render(){
+ tabs.innerHTML=cats.map(c=>`<button type="button" class="tab ${selected===c?"active":""}" data-cat="${c}" aria-pressed="${selected===c}">${c==="全部"?"◉　":c==="永續動態"?"♧　":c==="認證與證書"?"▤　":"♜　"}${c}</button>`).join("");
+ const q=search.value.trim().toLocaleLowerCase();
+ const items=news.map((n,i)=>({...n,index:i})).filter(n=>(selected==="全部"||n.cat===selected)&&(!q||`${n.title} ${n.summary} ${n.date} ${n.cat}`.toLocaleLowerCase().includes(q)));
+ const total=Math.max(1,Math.ceil(items.length/perPage));page=Math.min(page,total);
+ grid.innerHTML=items.length?items.slice((page-1)*perPage,page*perPage).map(n=>`<article class="news-card"><div class="news-photo" style="background:${photoStyles[n.photo]}"><div class="fallback" aria-hidden="true">${n.symbol}</div><span class="tag ${n.cat==="獎項與肯定"?"award":""}">${n.cat}</span></div><div class="card-content"><time class="date">${n.date}</time><h2>${escapeHTML(n.title)}</h2><p class="summary">${escapeHTML(n.summary)}</p><button class="read-more" data-index="${n.index}" type="button" aria-label="閱讀${escapeHTML(n.title)}">了解更多　→</button></div></article>`).join(""):'<div class="empty">目前沒有符合條件的示範新聞，請嘗試其他關鍵字。</div>';
+ pager.innerHTML=`<button class="page-btn" data-page="${page-1}" ${page===1?"disabled":""} aria-label="上一頁">‹</button>`+Array.from({length:total},(_,i)=>`<button class="page-btn ${i+1===page?"active":""}" data-page="${i+1}" aria-label="第${i+1}頁" ${i+1===page?'aria-current="page"':""}>${i+1}</button>`).join("")+`<button class="page-btn" data-page="${page+1}" ${page===total?"disabled":""} aria-label="下一頁">›</button>`;
+}
+tabs.addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;selected=b.dataset.cat;page=1;render()});
+search.addEventListener("input",()=>{page=1;render()});
+pager.addEventListener("click",e=>{const b=e.target.closest("[data-page]");if(!b||b.disabled)return;page=Number(b.dataset.page);render();document.querySelector(".news-main").scrollIntoView({behavior:"smooth"})});
+const dialog=document.getElementById("detail");
+grid.addEventListener("click",e=>{const b=e.target.closest("[data-index]");if(!b)return;const n=news[Number(b.dataset.index)];document.getElementById("detail-date").textContent=n.date+"｜"+n.cat;document.getElementById("detail-title").textContent=n.title;document.getElementById("detail-text").textContent=n.summary;dialog.showModal()});
+document.getElementById("close").onclick=()=>dialog.close();
+dialog.addEventListener("click",e=>{if(e.target===dialog)dialog.close()});
+document.getElementById("subscribe-btn").addEventListener("click",()=>alert("此為展示版介面，訂閱功能尚未啟用。"));
+render();
+</script>
+<script src="js/layout.js"></script>
+</body>
+</html>
