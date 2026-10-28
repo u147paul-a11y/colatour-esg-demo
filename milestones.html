@@ -67,13 +67,14 @@
 }
 
 </style>
+  <link rel="stylesheet" href="css/layout.css">
 </head>
 <body>
-<header class="nav"><a href="index.html"><img src="image/main/logo.png" alt="可樂旅遊"></a><nav class="nav-links" aria-label="主要選單"><a href="index.html">永續藍圖（首頁）</a><a href="milestones.html" aria-current="page">幸福里程碑</a><a href="index.html#story">永續旅遊</a><a href="index.html#commitment">永續承諾</a></nav></header>
+<div id="site-header"></div>
 <section class="hero"><div class="hero-inner"><h1>幸福里程碑</h1><p>我們走過的永續旅程</p></div></section>
 <main class="content wrap"><div class="topline"><h2>❧ 永續旅程時間軸</h2><div class="filters" id="filters" aria-label="專案分類"></div></div><div class="timeline" id="timeline" aria-label="選擇永續旅程時期"></div><div class="panel"><aside class="intro"><div class="years" id="periodYears"></div><h3 id="periodTitle"></h3><p id="periodDesc"></p></aside><section class="cards-area" aria-label="永續專案"><div class="cards" id="cards"></div><div class="controls"><button id="prev" aria-label="上一組專案">‹</button><span class="status" id="status" aria-live="polite"></span><button id="next" aria-label="下一組專案">›</button></div><p class="note">展示版：專案資料與圖片請依公司核實資料更新；圖片若未上傳，卡片會顯示綠色底圖。</p></section></div></main>
 <dialog class="dialog" id="detail"><div class="dialog-body"><div class="dialog-top"><div><small id="detailMeta"></small><h2 id="detailTitle"></h2></div><button class="dialog-close" id="close" aria-label="關閉視窗">×</button></div><p id="detailDesc"></p><img class="photo" id="detailImg" alt="" hidden></div></dialog>
-<footer class="footer">© 2026 ColaTour Co., Ltd.｜永續網站 Demo</footer>
+<div id="site-footer"></div>
 <script>
 // 資料集中管理：日後新增專案，只要複製一筆物件並修改內容即可。
 // 請把圖片放在 GitHub 的 image/milestones/ 資料夾，再填入對應路徑。
@@ -124,4 +125,5 @@ $('prev').onclick=()=>{page--;render()};$('next').onclick=()=>{page++;render()};
 $('cards').addEventListener('click',e=>{const b=e.target.closest('[data-id]');if(!b)return;const p=projects.find(p=>p.id===Number(b.dataset.id));$('detailMeta').textContent=`${p.year}　｜　${p.category}`;$('detailTitle').textContent=p.title;$('detailDesc').textContent=p.desc;const img=$('detailImg');img.hidden=false;img.src=p.image;img.onerror=()=>{img.hidden=true};$('detail').showModal()});
 $('close').onclick=()=>$('detail').close();$('detail').addEventListener('click',e=>{if(e.target===$('detail'))$('detail').close()});render();
 </script>
+  <script src="js/layout.js"></script>
 </body></html>
